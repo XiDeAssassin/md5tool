@@ -10,6 +10,7 @@ namespace md5tool
 {
     public class Func
     {
+        public string newline = Environment.NewLine;
         public string MD5file(string filename)
         {
             using (var md5 = MD5.Create())
@@ -70,7 +71,7 @@ namespace md5tool
             ProcessStartInfo psi = new ProcessStartInfo()
             {
                 Verb = "runas",
-                FileName = Application.ExecutablePath
+                FileName = Application.StartupPath + @"\md5console.exe"
             };
 
             try
@@ -82,6 +83,11 @@ namespace md5tool
             {
                 throw;
             }
+        }
+
+        public void ShowMessage(string filename)
+        {
+            MessageBox.Show(filename + newline + "MD5 is " + MD5file(filename) + newline + "SHA-1 is " + SHA1file(filename));
         }
     }
 }
