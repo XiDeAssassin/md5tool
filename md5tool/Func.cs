@@ -1,7 +1,10 @@
 ﻿using System;
-using System.Text;
 using System.IO;
 using System.Security.Cryptography;
+using Microsoft.Win32;
+using System.Windows.Forms;
+using System.Security.Principal;
+using System.Diagnostics;
 
 namespace md5tool
 {
@@ -26,6 +29,59 @@ namespace md5tool
                 {
                     return BitConverter.ToString(sha1.ComputeHash(stream)).Replace("-", string.Empty);
                 }
+            }
+        }
+
+        public void CreateRegKey()
+        {
+            RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"*shell", true);
+            if (key == null)
+            {
+                key = Registry.ClassesRoot.CreateSubKey(@"*\shell");
+            }
+            RegistryKey custom = key.CreateSubKey("MD5 Tool");
+            RegistryKey cmd = custom.CreateSubKey("command");
+            cmd.SetValue("", Application.ExecutablePath + " %1");
+
+            cmd.Close();
+            custom.Close();
+            key.Close();
+        }
+
+        public bool IsAdmin()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            bool isRunasAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
+
+            if(isRunasAdmin == true)
+            {
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+        public void RunasAdmin()
+        {
+            ProcessStartInfo psi = new ProcessStartInfo()
+            {
+                Verb = "runas",
+                FileName = Application.ExecutablePath
+            };
+
+            try
+            {
+                Process.Start(psi);
+                Application.Exit();
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }

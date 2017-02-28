@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace md5tool
@@ -17,6 +10,7 @@ namespace md5tool
             InitializeComponent();
         }
         Func obj = new Func();
+
         private void Button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog()
@@ -26,8 +20,28 @@ namespace md5tool
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("MD5 is " + obj.MD5file(dialog.FileName) + Environment.NewLine + "SHA-1 is " + obj.SHA1file(dialog.FileName));
+                string filename = dialog.FileName;
+                string newline = Environment.NewLine;
+                MessageBox.Show(filename + newline + "MD5 is " + obj.MD5file(filename) + newline + "SHA-1 is " + obj.SHA1file(filename));
             }
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if (!obj.IsAdmin())
+            {
+                obj.RunasAdmin();
+            }
+
+            else
+            {
+                obj.CreateRegKey();
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show(Environment.OSVersion.ToString());
         }
     }
 }
