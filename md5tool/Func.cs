@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace md5tool
 {
-    class Func
+    public class Func
     {
         public string MD5file(string filename)
         {
@@ -80,7 +80,6 @@ namespace md5tool
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
