@@ -21,8 +21,14 @@ namespace md5console
                 {
                     filename = args[0];
                 }
-                obj.ShowMessage(filename);
+                System.Windows.Forms.DialogResult result;
+                result = obj.ShowMessage(filename);
+                if (result==System.Windows.Forms.DialogResult.OK)
+                {
+                    Environment.Exit(0);
+                }
             }
+            
         }
 
 
