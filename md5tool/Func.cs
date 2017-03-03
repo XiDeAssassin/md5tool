@@ -42,7 +42,7 @@ namespace md5tool
             }
             RegistryKey custom = key.CreateSubKey("MD5 Tool");
             RegistryKey cmd = custom.CreateSubKey("command");
-            cmd.SetValue("", Application.ExecutablePath + " %1");
+            cmd.SetValue("", Application.ExecutablePath + " " +"\"%1\"");
 
             cmd.Close();
             custom.Close();

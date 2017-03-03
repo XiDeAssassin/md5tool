@@ -1,5 +1,6 @@
 ﻿using md5tool;
 using System;
+using System.Windows.Forms;
 namespace md5console
 {
     class Program
@@ -12,7 +13,7 @@ namespace md5console
             if (obj.IsAdmin())
             {
                 obj.CreateRegKey();
-                Console.WriteLine("Reg OK!" + Environment.NewLine);
+                MessageBox.Show("Reg OK!");
             }
             else
             {
@@ -21,12 +22,15 @@ namespace md5console
                 {
                     filename = args[0];
                 }
+
                 System.Windows.Forms.DialogResult result;
                 result = obj.ShowMessage(filename);
-                if (result==System.Windows.Forms.DialogResult.OK)
+                if (result == System.Windows.Forms.DialogResult.OK)
                 {
                     Environment.Exit(0);
                 }
+
+
             }
             
         }
