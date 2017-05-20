@@ -55,7 +55,7 @@ namespace md5tool
             WindowsPrincipal principal = new WindowsPrincipal(identity);
             bool isRunasAdmin = principal.IsInRole(WindowsBuiltInRole.Administrator);
 
-            if(isRunasAdmin == true)
+            if(isRunasAdmin)
             {
                 return true;
             }
@@ -66,29 +66,48 @@ namespace md5tool
             }
         }
 
-        public void RunasAdmin()
+        public void RunasAdmin(bool verb)
         {
-            ProcessStartInfo psi = new ProcessStartInfo()
-            {
-                Verb = "runas",
-                FileName = Application.StartupPath + @"\md5console.exe"
-            };
 
-            try
+            if (verb)
             {
-                Process.Start(psi);
-                Application.Exit();
+                ProcessStartInfo psi = new ProcessStartInfo()
+                {
+                    Verb = "runas",
+                    FileName = Application.StartupPath + @"\md5tool.exe"
+                };
+
+                try
+                {
+                    Process.Start(psi);
+                    Application.Exit();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
-            catch (Exception)
+
+            else
             {
-                throw;
+                ProcessStartInfo psi = new ProcessStartInfo()
+                {
+                    FileName = Application.StartupPath + @"\md5tool.exe"
+                };
+
+                try
+                {
+                    Process.Start(psi);
+                    Application.Exit();
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
 
-        public string LabelWriter(string input)
-        {
-            return input;
-        }
 
         public string ShowMessage(string filename)
         {

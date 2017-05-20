@@ -3,14 +3,14 @@ using System.Windows.Forms;
 
 namespace md5tool
 {
-    public partial class Form1 : Form
+    public partial class MainView : Form
     {
-        public Form1()
+        public MainView()
         {
             InitializeComponent();
         }
         Func obj = new Func();
-
+        string newline = Environment.NewLine;
         private void Button1_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog()
@@ -20,9 +20,9 @@ namespace md5tool
 
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                string filename = dialog.FileName;
-                string newline = Environment.NewLine;
-                MessageBox.Show(filename + newline + "MD5 is " + obj.MD5file(filename) + newline + "SHA-1 is " + obj.SHA1file(filename));
+                Vars.fileNamewithPath = dialog.FileName;
+                Result form2 = new Result();
+                form2.Show();
             }
         }
 
@@ -30,12 +30,13 @@ namespace md5tool
         {
             if (!obj.IsAdmin())
             {
-                obj.RunasAdmin();
+                obj.RunasAdmin(true);
             }
 
             else
             {
                 obj.CreateRegKey();
+                MessageBox.Show("Reg OK!");
             }
         }
 

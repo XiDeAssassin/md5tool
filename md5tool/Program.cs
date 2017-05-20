@@ -9,12 +9,40 @@ namespace md5tool
         /// 应用程序的主入口点。
         /// </summary>
         [STAThread]
-        static void Main()
-        {            
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            
+        static void Main(string[] args)
+        {
+            Func obj = new Func();
+
+            if (args.GetLength(0) > 0)
+            {
+                Vars.fileNamewithPath = args[0];
+
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Result());
+            }
+
+            else
+            {
+                if (obj.IsAdmin())
+                {
+                    obj.CreateRegKey();
+                    MessageBox.Show("Reg OK!");
+
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new MainView());
+
+                }
+
+                else
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new MainView());
+                }
+                
+            }
         }
 
     }

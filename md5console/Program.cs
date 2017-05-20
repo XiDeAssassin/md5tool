@@ -10,15 +10,8 @@ namespace md5console
         [STAThread]
         static void Main(string[] args)
         {
-            string filenameWithPath = "";
-            if (args.GetLength(0) > 0)
-            {
-                filenameWithPath = args[0];
-            }
-
-            Vars.fileNamewithPath = filenameWithPath;
-
             Func obj = new Func();
+
             if (obj.IsAdmin())
             {
                 obj.CreateRegKey();
@@ -26,25 +19,16 @@ namespace md5console
             }
             else
             {
+                if (args.GetLength(0) > 0)
+                {
+                    Vars.fileNamewithPath = args[0];
+                }
 
-                
-                Form1 form = new Form1();
+                Form2 form = new Form2();
 
 
                 form.ShowDialog();
 
-
-
-
-
-
-                /*System.Windows.Forms.DialogResult result;
-                result = obj.ShowMessage(filenameWithPath);
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    Environment.Exit(0);
-                }
-                */
             }
         }
     }
