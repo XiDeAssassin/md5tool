@@ -85,10 +85,16 @@ namespace md5tool
             }
         }
 
-        public DialogResult ShowMessage(string filename)
+        public string LabelWriter(string input)
+        {
+            return input;
+        }
+
+        public string ShowMessage(string filename)
         {
             string message = filename + newline + "MD5 is " + MD5file(filename) + newline + "SHA-1 is " + SHA1file(filename);
-            return MessageBox.Show(message,"MD5 result",MessageBoxButtons.OK);
+            return "MD5 result " + message;
         }
+
     }
 }

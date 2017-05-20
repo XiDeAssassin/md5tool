@@ -41,7 +41,7 @@ namespace md5tool
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show(Environment.OSVersion.ToString());
+            
         }
     }
 }
