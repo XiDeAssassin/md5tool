@@ -34,7 +34,7 @@ namespace md5console
 
         private void CopyButton(string text)
         {
-            Clipboard.SetData(DataFormats.Text, (string)text);
+            Clipboard.SetData(DataFormats.UnicodeText, (string)text);
         }
 
         private void button4_Click(object sender, EventArgs e)

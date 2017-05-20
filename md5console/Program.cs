@@ -7,7 +7,7 @@ namespace md5console
     class Program
     {
         string newline = Environment.NewLine;
-
+        [STAThread]
         static void Main(string[] args)
         {
             string filenameWithPath = "";
