@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace md5tool
 {
-    public class Func
+    public class Func : IFunc
     {
         public string newline = Environment.NewLine;
         public string MD5file(string filename)
