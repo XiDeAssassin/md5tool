@@ -8,10 +8,10 @@ using System.Diagnostics;
 
 namespace md5tool
 {
-    public class Func : IFunc
+    public class Func
     {
-        public string newline = Environment.NewLine;
-        public string MD5file(string filename)
+        public static string newline = Environment.NewLine;
+        public static string MD5file(string filename)
         {
             using (var md5 = MD5.Create())
             {
@@ -22,7 +22,7 @@ namespace md5tool
             }
         }
 
-        public string SHA1file(string filename)
+        public static string SHA1file(string filename)
         {
             using (var sha1 = SHA1.Create())
             {
@@ -33,7 +33,7 @@ namespace md5tool
             }
         }
 
-        public void CreateRegKey()
+        public static void CreateRegKey()
         {
             RegistryKey key = Registry.ClassesRoot.OpenSubKey(@"*shell", true);
             if (key == null)
@@ -49,7 +49,7 @@ namespace md5tool
             key.Close();
         }
 
-        public bool IsAdmin()
+        public static bool IsAdmin()
         {
             WindowsIdentity identity = WindowsIdentity.GetCurrent();
             WindowsPrincipal principal = new WindowsPrincipal(identity);
@@ -66,7 +66,7 @@ namespace md5tool
             }
         }
 
-        public void RunasAdmin(bool verb)
+        public static void RunasAdmin(bool verb)
         {
 
             if (verb)
@@ -109,7 +109,7 @@ namespace md5tool
         }
 
 
-        public string ShowMessage(string filename)
+        public static string ShowMessage(string filename)
         {
             string message = filename + newline + "MD5 is " + MD5file(filename) + newline + "SHA-1 is " + SHA1file(filename);
             return "MD5 result " + message;

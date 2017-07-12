@@ -11,8 +11,6 @@ namespace md5tool
         [STAThread]
         static void Main(string[] args)
         {
-            Func obj = new Func();
-
             if (args.GetLength(0) > 0)
             {
                 Vars.fileNamewithPath = args[0];
@@ -24,9 +22,9 @@ namespace md5tool
 
             else
             {
-                if (obj.IsAdmin())
+                if (Func.IsAdmin())
                 {
-                    obj.CreateRegKey();
+                    Func.CreateRegKey();
                     MessageBox.Show("Reg OK!");
 
                     Application.EnableVisualStyles();

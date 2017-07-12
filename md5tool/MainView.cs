@@ -28,14 +28,14 @@ namespace md5tool
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            if (!obj.IsAdmin())
+            if (!Func.IsAdmin())
             {
-                obj.RunasAdmin(true);
+                Func.RunasAdmin(true);
             }
 
             else
             {
-                obj.CreateRegKey();
+                Func.CreateRegKey();
                 MessageBox.Show("Reg OK!");
             }
         }

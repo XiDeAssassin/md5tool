@@ -80,7 +80,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IFunc.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
     </Compile>

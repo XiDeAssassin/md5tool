@@ -13,8 +13,8 @@ namespace md5tool
         private void Result_Load(object sender, EventArgs e)
         {
             Func obj = new Func();
-            label3.Text = obj.MD5file(Vars.fileNamewithPath);
-            label4.Text = obj.SHA1file(Vars.fileNamewithPath);
+            label3.Text = Func.MD5file(Vars.fileNamewithPath);
+            label4.Text = Func.SHA1file(Vars.fileNamewithPath);
         }
 
         private void button3_Click(object sender, EventArgs e)
